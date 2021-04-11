@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./ms_gestao_consultorias
+    ports:
+      - 8002:8000
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    environment:
+        POSTGRES_HOST_AUTH_METHOD: trust
